@@ -9,36 +9,59 @@ public class TransmissionObject {
 
     private String archiveName;
 
-    private InetAddress address;
+    private InetAddress IPClient;
+    private int portClient;
 
-    private int port;
+    private InetAddress IPServer;
+    private int portServer;
 
     private ArrayList<Integer> parts;
+    private byte[] pecas;
 
-    private ArrayList<Byte[]> pecas;
+    //Constructor Future
+    public TransmissionObject(){}
 
-    public TransmissionObject(InetAddress address, ArrayList<Byte[]> pecas) {
-        this.address = address;
+    public TransmissionObject(char operation, String archiveName, InetAddress IPClient, int portClient, InetAddress IPServer, int portServer, ArrayList<Integer> parts, byte[] pecas) {
+        this.operation = operation;
+        this.archiveName = archiveName;
+        this.IPClient = IPClient;
+        this.portClient = portClient;
+        this.IPServer = IPServer;
+        this.portServer = portServer;
+        this.parts = parts;
         this.pecas = pecas;
     }
 
-    public TransmissionObject(char operation, InetAddress address, ArrayList<Integer> parts) {
-        this.operation = operation;
-        this.address = address;
-        this.parts = parts;
+    public InetAddress getIPClient() {
+        return IPClient;
     }
 
-    public TransmissionObject(char operation, String archiveName) {
-        this.operation = operation;
-        this.archiveName = archiveName;
+    public void setIPClient(InetAddress IPClient) {
+        this.IPClient = IPClient;
     }
 
-    public String getArchiveName() {
-        return archiveName;
+    public int getPortClient() {
+        return portClient;
     }
 
-    public void setArchiveName(String archiveName) {
-        this.archiveName = archiveName;
+    public void setPortClient(int portClient) {
+        this.portClient = portClient;
+    }
+
+    public InetAddress getIPServer() {
+        return IPServer;
+    }
+
+    public void setIPServer(InetAddress IPServer) {
+        this.IPServer = IPServer;
+    }
+
+    public int getPortServer() {
+        return portServer;
+    }
+
+    public void setPortServer(int portServer) {
+        this.portServer = portServer;
     }
 
     public char getOperation() {
@@ -49,35 +72,27 @@ public class TransmissionObject {
         this.operation = operation;
     }
 
-    public InetAddress getAddress() {
-        return address;
+    public String getArchiveName() {
+        return archiveName;
     }
 
-    public void setAddress(InetAddress address) {
-        this.address = address;
+    public void setArchiveName(String archiveName) {
+        this.archiveName = archiveName;
     }
 
     public ArrayList<Integer> getParts() {
         return parts;
     }
 
-    public int getPort() {
-        return port;
-    }
-
-    public void setPort(int port) {
-        this.port = port;
-    }
-
     public void setParts(ArrayList<Integer> parts) {
         this.parts = parts;
     }
 
-    public ArrayList<Byte[]> getPecas() {
+    public byte[] getPecas() {
         return pecas;
     }
 
-    public void setPecas(ArrayList<Byte[]> pecas) {
+    public void setPecas(byte[] pecas) {
         this.pecas = pecas;
     }
 }

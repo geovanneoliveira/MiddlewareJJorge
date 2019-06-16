@@ -1,6 +1,7 @@
-package server;
+package client;
 
 import Common.TransmissionObject;
+import server.ListenServer;
 
 
 import java.io.ByteArrayInputStream;
@@ -12,12 +13,7 @@ import java.net.Socket;
 
 public class Connection extends Thread {
 
-    private DatagramPacket packet = null;
     private Socket connection = null;
-
-    public Connection(DatagramPacket packet) {
-        this.packet = packet;
-    }
 
     public Connection(Socket connection) {
         this.connection = connection;
@@ -28,41 +24,13 @@ public class Connection extends Thread {
     @Override
     public void run() {
 
-        if(!(this.packet == null)){
-            TransmissionObject obj = packetToObject();
-            if(!(obj == null)) connReceive(obj);
-
-        }
-        else if (!(this.connection == null)){
+        if (!(this.connection == null)){
             TransmissionObject obj = connectionToObject();
             if(!(obj == null)) connReceive(obj);
         }
 
     }
 
-    private TransmissionObject packetToObject(){
-
-        TransmissionObject obj = null;
-
-        try
-        {
-            //Receive packet
-            byte[] data = this.packet.getData();
-            ByteArrayInputStream in = new ByteArrayInputStream(data);
-            ObjectInputStream is = new ObjectInputStream(in);
-
-            //transform class
-             obj = ((TransmissionObject) is.readObject());
-
-        }
-        catch (Exception e)
-        {
-            System.out.println("Error Connection::class->packetToObject");
-            e.printStackTrace();
-        }
-
-        return obj;
-    }
 
     private TransmissionObject connectionToObject() {
 
@@ -92,13 +60,21 @@ public class Connection extends Thread {
         ListenServer.getInstance().sendToListeners(obj);
     }
 
+    public void sendInMulticast(TransmissionObject obj){
+
+        obj.setIPClient(SocketTCP.IPCLIENT);
+        obj.setPortClient(SocketTCP.PORTCLIENT);
+
+        new SocketUDP().send(obj);
+    }
+
     public void send(TransmissionObject obj){
 
         try{
-            obj.setIPServer(SocketTCP.IPSERVER);
-            obj.setPortServer(SocketTCP.PORTSERVER);
+            obj.setIPClient(SocketTCP.IPCLIENT);
+            obj.setPortClient(SocketTCP.PORTCLIENT);
 
-            Socket socket = new Socket(obj.getIPClient(), obj.getPortClient());
+            Socket socket = new Socket(obj.getIPServer(), obj.getPortServer());
             ObjectOutputStream oos = new ObjectOutputStream(socket.getOutputStream());
             oos.writeObject(obj);
             socket.close();

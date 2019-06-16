@@ -1,26 +1,25 @@
-package server;
+package client;
 
-import java.io.DataInputStream;
-import java.io.InputStream;
+import server.Connection;
+
 import java.net.InetAddress;
 import java.net.ServerSocket;
 import java.net.Socket;
-import java.security.PublicKey;
 
 public class SocketTCP extends Thread {
 
-    public static InetAddress IPSERVER;
+    public static InetAddress IPCLIENT;
 
-    public static int PORTSERVER;
+    public static int PORTCLIENT;
 
     @Override
     public void run() {
 
         try {
 
-            ServerSocket servidor = new ServerSocket(9001);
-            IPSERVER = servidor.getInetAddress();
-            PORTSERVER = servidor.getLocalPort();
+            ServerSocket servidor = new ServerSocket(8001);
+            IPCLIENT = servidor.getInetAddress();
+            PORTCLIENT = servidor.getLocalPort();
 
             System.out.println("Servidor socket iniciado...");
 
