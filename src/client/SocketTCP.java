@@ -1,14 +1,10 @@
 package client;
 
-import server.Connection;
-
-import java.net.InetAddress;
-import java.net.ServerSocket;
-import java.net.Socket;
+import java.net.*;
+import java.util.Enumeration;
 
 public class SocketTCP extends Thread {
 
-    public static InetAddress IPCLIENT;
 
     public static int PORTCLIENT;
 
@@ -18,7 +14,6 @@ public class SocketTCP extends Thread {
         try {
 
             ServerSocket servidor = new ServerSocket(8001);
-            IPCLIENT = servidor.getInetAddress();
             PORTCLIENT = servidor.getLocalPort();
 
             System.out.println("Servidor socket iniciado...");

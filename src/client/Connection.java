@@ -1,14 +1,12 @@
 package client;
 
 import Common.TransmissionObject;
-import server.ListenServer;
 
 
 import java.io.ByteArrayInputStream;
 import java.io.InputStream;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
-import java.net.DatagramPacket;
 import java.net.Socket;
 
 public class Connection extends Thread {
@@ -26,7 +24,10 @@ public class Connection extends Thread {
 
         if (!(this.connection == null)){
             TransmissionObject obj = connectionToObject();
-            if(!(obj == null)) connReceive(obj);
+            if(!(obj == null)){
+                obj.setIPServer(connection.getInetAddress().getHostAddress());
+                connReceive(obj);
+            }
         }
 
     }
@@ -57,12 +58,11 @@ public class Connection extends Thread {
 
     private void connReceive(TransmissionObject obj){
 
-        ListenServer.getInstance().sendToListeners(obj);
+        ListenClient.getInstance().sendToListeners(obj);
     }
 
     public void sendInMulticast(TransmissionObject obj){
 
-        obj.setIPClient(SocketTCP.IPCLIENT);
         obj.setPortClient(SocketTCP.PORTCLIENT);
 
         new SocketUDP().send(obj);
@@ -71,7 +71,6 @@ public class Connection extends Thread {
     public void send(TransmissionObject obj){
 
         try{
-            obj.setIPClient(SocketTCP.IPCLIENT);
             obj.setPortClient(SocketTCP.PORTCLIENT);
 
             Socket socket = new Socket(obj.getIPServer(), obj.getPortServer());

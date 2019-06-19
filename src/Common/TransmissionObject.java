@@ -1,18 +1,18 @@
 package Common;
 
-import java.net.InetAddress;
+import java.io.Serializable;
 import java.util.ArrayList;
 
-public class TransmissionObject {
+public class TransmissionObject implements Serializable {
 
     private char operation; // Operation [ D -> DiscoverMachines, S -> send , R -> receive]
 
     private String archiveName;
 
-    private InetAddress IPClient;
+    private String IPClient;
     private int portClient;
 
-    private InetAddress IPServer;
+    private String IPServer;
     private int portServer;
 
     private ArrayList<Integer> parts;
@@ -21,7 +21,7 @@ public class TransmissionObject {
     //Constructor Future
     public TransmissionObject(){}
 
-    public TransmissionObject(char operation, String archiveName, InetAddress IPClient, int portClient, InetAddress IPServer, int portServer, ArrayList<Integer> parts, byte[] pecas) {
+    public TransmissionObject(char operation, String archiveName, String IPClient, int portClient, String IPServer, int portServer, ArrayList<Integer> parts, byte[] pecas) {
         this.operation = operation;
         this.archiveName = archiveName;
         this.IPClient = IPClient;
@@ -32,11 +32,11 @@ public class TransmissionObject {
         this.pecas = pecas;
     }
 
-    public InetAddress getIPClient() {
+    public String getIPClient() {
         return IPClient;
     }
 
-    public void setIPClient(InetAddress IPClient) {
+    public void setIPClient(String IPClient) {
         this.IPClient = IPClient;
     }
 
@@ -48,11 +48,11 @@ public class TransmissionObject {
         this.portClient = portClient;
     }
 
-    public InetAddress getIPServer() {
+    public String getIPServer() {
         return IPServer;
     }
 
-    public void setIPServer(InetAddress IPServer) {
+    public void setIPServer(String IPServer) {
         this.IPServer = IPServer;
     }
 

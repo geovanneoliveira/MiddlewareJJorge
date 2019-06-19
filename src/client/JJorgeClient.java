@@ -4,6 +4,7 @@ package client;
 import Common.ListenJJorge;
 import Common.TransmissionObject;
 
+
 public class JJorgeClient{
 
     public JJorgeClient(ListenJJorge listenJJorge) {
@@ -18,4 +19,5 @@ public class JJorgeClient{
     public void send(TransmissionObject obj){
         new Connection().send(obj);
     }
+
 }

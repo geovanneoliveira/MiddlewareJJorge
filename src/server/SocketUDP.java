@@ -4,10 +4,10 @@ import java.net.DatagramPacket;
 import java.net.InetAddress;
 import java.net.MulticastSocket;
 
-public class SocketUDP {
+public class SocketUDP extends Thread{
 
 
-    public void start() {
+    public void run() {
 
         String hostMulticast = "224.0.0.1";
         int port = 9000;
