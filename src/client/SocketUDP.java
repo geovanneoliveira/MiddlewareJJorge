@@ -1,7 +1,6 @@
 package client;
 
-import Common.TransmissionObject;
-import server.Connection;
+import common.TransmissionObject;
 
 import java.io.ByteArrayOutputStream;
 import java.io.ObjectOutputStream;

@@ -1,6 +1,6 @@
 package server;
 
-import Common.TransmissionObject;
+import common.TransmissionObject;
 
 
 import java.io.ByteArrayInputStream;

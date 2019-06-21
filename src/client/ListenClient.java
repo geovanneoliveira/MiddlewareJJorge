@@ -1,7 +1,7 @@
 package client;
 
-import Common.ListenJJorge;
-import Common.TransmissionObject;
+import common.ListenJJorge;
+import common.TransmissionObject;
 
 import java.util.ArrayList;
 import java.util.List;

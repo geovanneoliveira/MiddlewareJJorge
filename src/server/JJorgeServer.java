@@ -1,7 +1,7 @@
 package server;
 
-import Common.ListenJJorge;
-import Common.TransmissionObject;
+import common.ListenJJorge;
+import common.TransmissionObject;
 
 public class JJorgeServer {
 
