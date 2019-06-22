@@ -17,6 +17,7 @@ public class TransmissionObject implements Serializable {
 
     private ArrayList<Integer> parts;
     private byte[] pecas;
+    private int idPeca;
 
     //Constructor Future
     public TransmissionObject(){}
@@ -30,6 +31,7 @@ public class TransmissionObject implements Serializable {
         this.portServer = portServer;
         this.parts = parts;
         this.pecas = pecas;
+        this.idPeca = idPeca;
     }
 
     public String getIPClient() {
@@ -94,5 +96,13 @@ public class TransmissionObject implements Serializable {
 
     public void setPecas(byte[] pecas) {
         this.pecas = pecas;
+    }
+
+    public int getIdPeca() {
+        return idPeca;
+    }
+
+    public void setIdPeca(int idPeca) {
+        this.idPeca = idPeca;
     }
 }
